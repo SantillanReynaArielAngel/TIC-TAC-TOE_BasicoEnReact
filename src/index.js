@@ -9,24 +9,26 @@ status=estado
 Game=Juego
 
 LOS COMPOENTES (COMPONENTE DE CLASE O TIPO DE COMPONENET DE REACT) : Cuadrado, Tabla y Juego
+Pasando props es cómo la información fluye en apps de React, de padres a hijos.
 
 */
 
 
 
-class Cuadrado extends React.Component {
+class Cuadrado extends React.Component { //Cuadrado es un compoenente hijo
     render() {
         return (
             <button className="cuadrado">
-                {/*Todo*/}
+                {/* recibiendo el valor por props: */}
+                {this.props.value}   
             </button>
         );
     }
 }
 
-class Tabla extends React.Component {
+class Tabla extends React.Component {   //Tabla es un compoenente padre
     hacerCuadrado(i){
-        return <Cuadrado/>;    
+        return <Cuadrado value={i}/>; //Pasando valores por props al componente Cuadrado    
     }
 
     render(){
