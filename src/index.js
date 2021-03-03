@@ -11,41 +11,25 @@ Game=Juego
 LOS COMPOENTES (COMPONENTE DE CLASE O TIPO DE COMPONENET DE REACT) : Cuadrado, Tabla y Juego
 Pasando props es cómo la información fluye en apps de React, de padres a hijos.
 
+COMPEONTE DE FUNCION: son una forma más simple de escribir componentes que solo 
+contienen un método render y no tiene estado propio. 
+En lugar de definir una clase que extiende React.Component, 
+podemos escribir una función que toma props como parámetros
+ y retorna lo que se debe renderizar. Componentes de función 
+ son menos tediosos de escribir que clases, y muchos 
+ componentes pueden ser expresados de esta manera.
 */
 
 
-
-class Cuadrado extends React.Component { //Cuadrado es un compoenente hijo
-    //Se definira el contructor con el estado del componente
-    // constructor(props){
-    //     super(props);
-    //     this.state={
-    //         value:null,
-    //     };
-    //     /*
-    //     Nota
-    //     Todas las clases de componentes de React que tienen un constructor deben 
-    //     empezar con una llamada a super(props). */
-    // }
-    
-    render() {
-        return (
-
-            // Funcion Normal:
-                // <button className="cuadrado" onClick={function(){
-                //         alert('click');
-                // }}>
-
-            // Usando la funcion Flecha para alert: onClick={()=>this.setState({value: 'X'})}
-            <button className="cuadrado" 
-                onClick={()=>this.props.onClick()}>
-                
-                {/* recibiendo el valor por props: */}
-                {this.props.value}   
-            </button>
-        );
-    }
+//COMPOENENTE DE FUNCION:
+function Cuadrado(props){
+    return(
+        <button className="cuadrado" onClick={props.onClick}>
+            {props.value}
+        </button>
+    );
 }
+
 
 class Tabla extends React.Component {   //Tabla es un compoenente padre
     /*Añade un constructor al Board y establece el estado inicial de Board
