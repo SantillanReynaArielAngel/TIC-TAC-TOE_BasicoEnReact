@@ -46,6 +46,9 @@ class Tabla extends React.Component {
 
     handleClick(i){
         const cuadrados=this.state.cuadrados.slice();
+        if(calcularGanador(cuadrados)||cuadrados[i]){
+            return;
+        }
         cuadrados[i]= this.state.xIsNext ? 'X' : 'O';
         this.setState({
             cuadrados: cuadrados,
@@ -62,7 +65,14 @@ class Tabla extends React.Component {
     }
 
     render(){
-        const estado ='Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
+        const ganador = calcularGanador(this.state.cuadrados);
+        let estado;
+        if(ganador){
+            estado = 'Ganador: '+ganador;
+        }else{
+            estado ='Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+         
         return(
             <div>
                 <div className="estado">{estado}</div>
@@ -109,3 +119,24 @@ ReactDOM.render(
     <Juego/>,
     document.getElementById('root')
 );
+
+
+function calcularGanador(cuadrados){
+    const lineas=[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6],
+    ];
+    for (let i=0; i<lineas.length; i++){
+        const [a,b,c] = lineas[i];
+        if(cuadrados[a] && cuadrados[a] === cuadrados[b] && cuadrados[a] === cuadrados[c]){
+            return cuadrados[a];
+        }
+    }
+    return null;
+}
