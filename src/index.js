@@ -30,22 +30,27 @@ function Cuadrado(props){
     );
 }
 
-
-class Tabla extends React.Component {   //Tabla es un compoenente padre
+//Tabla es un compoenente padre
+class Tabla extends React.Component {   
+    
     /*Añade un constructor al Board y establece el estado inicial de Board
-         para contener un arreglo con 9 valores null. Estos 9 
+        para contener un arreglo con 9 valores null. Estos 9 
         nulls corresponden a los 9 cuadrados:*/
     constructor(props){
         super(props);
         this.state={
-             cuadrados: Array(9).fill(null),   
+             cuadrados: Array(9).fill(null),
+             xIsNext: true,   //Una variable boleana para determinar quien es el siguiente
         };
     }
 
     handleClick(i){
         const cuadrados=this.state.cuadrados.slice();
-        cuadrados[i]='X';
-        this.setState({cuadrados: cuadrados});
+        cuadrados[i]= this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            cuadrados: cuadrados,
+            xIsNext: !this.state.xIsNext, //IsNext (un booleano) será invertido para determinar qué jugador sigue y el estado del juego será guardado. Con este cambio, “X”s y “O”s pueden tomar turnos.
+        });
     }
 
     hacerCuadrado(i){
@@ -57,7 +62,7 @@ class Tabla extends React.Component {   //Tabla es un compoenente padre
     }
 
     render(){
-        const estado ='Siguiente jugador: X';
+        const estado ='Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
         return(
             <div>
                 <div className="estado">{estado}</div>
