@@ -16,9 +16,30 @@ Pasando props es cómo la información fluye en apps de React, de padres a hijos
 
 
 class Cuadrado extends React.Component { //Cuadrado es un compoenente hijo
+    //Se definira el contructor con el estado del componente
+    // constructor(props){
+    //     super(props);
+    //     this.state={
+    //         value:null,
+    //     };
+    //     /*
+    //     Nota
+    //     Todas las clases de componentes de React que tienen un constructor deben 
+    //     empezar con una llamada a super(props). */
+    // }
+    
     render() {
         return (
-            <button className="cuadrado">
+
+            // Funcion Normal:
+                // <button className="cuadrado" onClick={function(){
+                //         alert('click');
+                // }}>
+
+            // Usando la funcion Flecha para alert: onClick={()=>this.setState({value: 'X'})}
+            <button className="cuadrado" 
+                onClick={()=>this.props.onClick()}>
+                
                 {/* recibiendo el valor por props: */}
                 {this.props.value}   
             </button>
@@ -27,8 +48,28 @@ class Cuadrado extends React.Component { //Cuadrado es un compoenente hijo
 }
 
 class Tabla extends React.Component {   //Tabla es un compoenente padre
+    /*Añade un constructor al Board y establece el estado inicial de Board
+         para contener un arreglo con 9 valores null. Estos 9 
+        nulls corresponden a los 9 cuadrados:*/
+    constructor(props){
+        super(props);
+        this.state={
+             cuadrados: Array(9).fill(null),   
+        };
+    }
+
+    handleClick(i){
+        const cuadrados=this.state.cuadrados.slice();
+        cuadrados[i]='X';
+        this.setState({cuadrados: cuadrados});
+    }
+
     hacerCuadrado(i){
-        return <Cuadrado value={i}/>; //Pasando valores por props al componente Cuadrado    
+        return (
+            <Cuadrado value={this.state.cuadrados[i]} //Pasando valores por props al componente Cuadrado
+                onClick={()=>this.handleClick(i)}
+            /> 
+        );    
     }
 
     render(){
