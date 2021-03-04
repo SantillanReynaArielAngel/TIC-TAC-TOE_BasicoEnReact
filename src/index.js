@@ -2,22 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-/*Notas:
+/*NOTAS:
 Square=cuadrado
 Board=Tabla
 status=estado
 Game=Juego
 
-LOS COMPOENTES (COMPONENTE DE CLASE O TIPO DE COMPONENET DE REACT) : Cuadrado, Tabla y Juego
-Pasando props es cómo la información fluye en apps de React, de padres a hijos.
+-LOS COMPOENTES (COMPONENTE DE CLASE O TIPO DE COMPONENET DE REACT) son: Cuadrado, Tabla y Juego
+-Pasando props es cómo la información fluye en apps de React, de padres a hijos.
 
-COMPEONTE DE FUNCION: son una forma más simple de escribir componentes que solo 
-contienen un método render y no tiene estado propio. 
+-COMPEONTE DE FUNCION: son una forma más simple de escribir 
+componentes que solo contienen un método render y no tiene estado propio. 
 En lugar de definir una clase que extiende React.Component, 
 podemos escribir una función que toma props como parámetros
- y retorna lo que se debe renderizar. Componentes de función 
- son menos tediosos de escribir que clases, y muchos 
- componentes pueden ser expresados de esta manera.
+y retorna lo que se debe renderizar. Componentes de función 
+son menos tediosos de escribir que clases, y muchos componentes 
+pueden ser expresados de esta manera.
+
 */
 
 
@@ -29,6 +30,7 @@ function Cuadrado(props){
         </button>
     );
 }
+
 
 //Tabla es un compoenente padre
 class Tabla extends React.Component {   
@@ -120,7 +122,7 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-
+// FUNCION PARA CALCULAR AL GANADOR, EL ARRAY LINEAS CONTIENEN LAS 8 POSIBILIDADES DE FORMAR UNA LINEA
 function calcularGanador(cuadrados){
     const lineas=[
         [0,1,2],
