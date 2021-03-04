@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-/*NOTAS:
+/*
+TRADUCION:
 Square=cuadrado
 Board=Tabla
 status=estado
 Game=Juego
 
+NOTAS:
 -LOS COMPOENTES (COMPONENTE DE CLASE O TIPO DE COMPONENET DE REACT) son: Cuadrado, Tabla y Juego
 -Pasando props es cómo la información fluye en apps de React, de padres a hijos.
 
@@ -121,6 +123,7 @@ ReactDOM.render(
     <Juego/>,
     document.getElementById('root')
 );
+
 
 // FUNCION PARA CALCULAR AL GANADOR, EL ARRAY LINEAS CONTIENEN LAS 8 POSIBILIDADES DE FORMAR UNA LINEA
 function calcularGanador(cuadrados){
